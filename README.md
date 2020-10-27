@@ -119,7 +119,7 @@ Output:
 
 Using `log` instead of `console.log` prevents such mistakes by making them static type errors.
 
-### Contribute
+## Contribute
 
 Run these commands to build everything and run the tests:
 
