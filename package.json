@@ -1,0 +1,70 @@
+{
+  "name": "azure-pipelines-logging",
+  "version": "1.0.0",
+  "description": "Typed API for logging in Azure Pipelines",
+  "author": "Simon Alling",
+  "keywords": [
+    "Azure",
+    "DevOps",
+    "logging",
+    "Pipelines",
+    "vso"
+  ],
+  "files": [ "dist" ],
+  "main": "dist/index",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "homepage": "https://github.com/SimonAlling/azure-pipelines-logging",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SimonAlling/azure-pipelines-logging"
+  },
+  "bugs": {
+    "url": "https://github.com/SimonAlling/azure-pipelines-logging/issues"
+  },
+  "scripts": {
+    "build": "rm -rf dist && npm run build-esm && npm run rename && npm run build-cjs",
+    "build-cjs": "tsc -p tsconfig.build.json --module CommonJS",
+    "build-docs": "tsc -p . && embedme README.md",
+    "build-esm": "tsc -p tsconfig.build.json",
+    "check-docs": "npm run build-docs -- --verify",
+    "lint": "eslint src --ext .ts",
+    "make": "npm run build && npm test && npm run build-docs",
+    "prepublishOnly": "npm run verify && cli-confirm 'Publish?'",
+    "rename": "renamer --force --find \"/\\.js$/\" --replace \".mjs\" \"dist/**\"",
+    "test": "jest --no-cache",
+    "verify": "npm run make && repository-check-dirty && npm pack"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run verify"
+    }
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": ".+\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "cli-confirm": "^1.0.1",
+    "embedme": "^1.22.0",
+    "eslint": "^7.12.1",
+    "husky": "^4.3.0",
+    "jest": "^26.6.1",
+    "renamer": "^2.0.1",
+    "repository-check-dirty": "^1.2.2",
+    "ts-jest": "^26.4.2",
+    "tsd": "^0.13.1",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {}
+}

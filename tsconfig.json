@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "lib": [
+            "esnext",
+        ],
+        "module": "es2015",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "outDir": "dist",
+        "paths": {
+            "azure-pipelines-logging": ["."], // So imports work in documentation examples.
+        },
+        "removeComments": true,
+        "strict": true,
+        "target": "es2018",
+    },
+    "include": [
+        "docs/**/*.ts",
+        "src/**/*.ts",
+    ],
+}
