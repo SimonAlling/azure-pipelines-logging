@@ -10,6 +10,11 @@
 A typed API for [Azure Pipelines logging commands](https://docs.microsoft.com/en-us/azure/devops/pipelines/scripts/logging-commands).
 Designed to be used with TypeScript.
 
+<img
+    src="docs/autocompletion.png"
+    alt="Autocompletion for the `task` area"
+/>
+
 ## Installation
 
 ```
@@ -44,12 +49,7 @@ Output:
 ### Typechecking and Autocompletion
 
 The exported functions are typed as strictly as possible and in a way such that editors can provide useful autocompletion.
-For example, give `"task"` as the first argument to `command` to get autocompletion for all actions in the `task` area:
-
-<img
-    src="docs/autocompletion.png"
-    alt="Autocompletion for the `task` area"
-/>
+For example, give `"task"` as the first argument to `command` to get autocompletion for all actions in the `task` area.
 
 ### Properties
 
