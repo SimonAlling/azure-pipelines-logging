@@ -10,7 +10,9 @@
     "Pipelines",
     "vso"
   ],
-  "files": [ "dist" ],
+  "files": [
+    "dist"
+  ],
   "main": "dist/index",
   "types": "dist/index.d.ts",
   "sideEffects": false,
