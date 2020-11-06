@@ -4,7 +4,7 @@ log(command("task", "logissue", { type: "error" })("Error summary"));
 log(format("error")(
     "Details about error.",
     "Second line of details.",
-    "Third line.",
+    "Third and\nfourth line.",
 ));
 
 /*
@@ -12,5 +12,6 @@ Output:
 ##vso[task.logissue type=error;]Error summary
 ##[error]Details about error.
 ##[error]Second line of details.
-##[error]Third line.
+##[error]Third and
+##[error]fourth line.
 */
