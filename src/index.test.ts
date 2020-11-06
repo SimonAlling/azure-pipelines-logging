@@ -33,14 +33,16 @@ describe(command, () => {
 
 describe(format, () => {
     it("command", () => {
-        const actual = format("command")("Command-line being run");
-        const expected = `##[command]Command-line being run`;
+        const actual = format("command")("Command-line being run", "Next line", "Multiple\nLines");
+        const expected = `##[command]Command-line being run\n##[command]Next line\n##[command]Multiple\n##[command]Lines`;
         expect(actual).toEqual(expected);
+        expect(format("command")()).toEqual("##[command]");
     });
     it("debug", () => {
-        const actual = format("debug")("Debug text", "Next line");
-        const expected = `##[debug]Debug text\n##[debug]Next line`;
+        const actual = format("debug")("Debug text", "Next line", "Multiple\nLines");
+        const expected = `##[debug]Debug text\n##[debug]Next line\n##[debug]Multiple\n##[debug]Lines`;
         expect(actual).toEqual(expected);
+        expect(format("debug")()).toEqual("##[debug]");
     });
     it("endgroup", () => {
         const actual = format("endgroup")();
@@ -48,9 +50,10 @@ describe(format, () => {
         expect(actual).toEqual(expected);
     });
     it("error", () => {
-        const actual = format("error")("Error message", "Next line");
-        const expected = `##[error]Error message\n##[error]Next line`;
+        const actual = format("error")("Error message", "Next line", "Multiple\nLines");
+        const expected = `##[error]Error message\n##[error]Next line\n##[error]Multiple\n##[error]Lines`;
         expect(actual).toEqual(expected);
+        expect(format("error")()).toEqual("##[error]");
     });
     it("group", () => {
         const actual = format("group")("Beginning of a group");
@@ -58,9 +61,10 @@ describe(format, () => {
         expect(actual).toEqual(expected);
     });
     it("warning", () => {
-        const actual = format("warning")("Warning message", "Next line");
-        const expected = `##[warning]Warning message\n##[warning]Next line`;
+        const actual = format("warning")("Warning message", "Next line", "Multiple\nLines");
+        const expected = `##[warning]Warning message\n##[warning]Next line\n##[warning]Multiple\n##[warning]Lines`;
         expect(actual).toEqual(expected);
+        expect(format("warning")()).toEqual("##[warning]");
     });
 });
 

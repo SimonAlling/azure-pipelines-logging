@@ -7,13 +7,9 @@ import {
 } from "./internal/command";
 import {
     Format,
-    FormatWithSingleLineMessage,
-    FormatWithMultiLineMessage,
+    FormatWithMessage,
     FormatWithoutMessage,
 } from "./internal/format";
-import {
-    NonEmptyArray,
-} from "./internal/utilities";
 
 /**
  * Constructs a general log command.
@@ -43,11 +39,11 @@ export function command<
  * Constructs a formatting log command representing an error, warning, collapsible section etc.
  */
 export function format(format: FormatWithoutMessage): () => string;
-export function format(format: FormatWithSingleLineMessage): (message: string) => string;
-export function format(format: FormatWithMultiLineMessage): (...message: NonEmptyArray<string>) => string;
+export function format(format: FormatWithMessage): (...message: readonly string[]) => string;
 export function format(format: Format): (...message: readonly string[]) => string {
     return (...message) => (
-        (message.length === 0 ? [""] : message) // The empty list represents the FormatWithoutMessage case.
+        // Arguments are conceptually treated as lines, but since they themselves can contain line breaks, we first split each argument into lines.
+        (message.length === 0 ? [""] : message.flatMap(arg => arg.split("\n")))
         .map(line => `##[${format}]${line}`)
         .join("\n")
     );
