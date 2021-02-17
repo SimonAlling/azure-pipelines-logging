@@ -3,6 +3,7 @@ export type FormatWithMessage =
     | "debug"
     | "error"
     | "group"
+    | "section"
     | "warning"
     ;
 

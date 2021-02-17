@@ -60,6 +60,11 @@ describe(format, () => {
         const expected = `##[group]Beginning of a group`;
         expect(actual).toEqual(expected);
     });
+    it("section", () => {
+        const actual = format("section")("Start of a section");
+        const expected = `##[section]Start of a section`;
+        expect(actual).toEqual(expected);
+    });
     it("warning", () => {
         const actual = format("warning")("Warning message", "Next line", "Multiple\nLines");
         const expected = `##[warning]Warning message\n##[warning]Next line\n##[warning]Multiple\n##[warning]Lines`;
