@@ -1,3 +1,5 @@
+import flatMap from "array.prototype.flatmap"; // Necessary for Node 10 support (ES2018).
+
 import {
     Action,
     Area,
@@ -43,7 +45,7 @@ export function format(format: FormatWithMessage): (...message: readonly string[
 export function format(format: Format): (...message: readonly string[]) => string {
     return (...message) => (
         // Arguments are conceptually treated as lines, but since they themselves can contain line breaks, we first split each argument into lines.
-        (message.length === 0 ? [""] : message.flatMap(arg => arg.split("\n")))
+        (message.length === 0 ? [""] : flatMap(message, arg => arg.split("\n")))
         .map(line => `##[${format}]${line}`)
         .join("\n")
     );
