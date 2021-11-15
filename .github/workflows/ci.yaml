@@ -14,7 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version:
+          - 10.x # Azure Pipelines tasks run on Node 10 at the time of writing.
+          - 12.x
+          - 14.x
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
