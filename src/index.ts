@@ -1,4 +1,4 @@
-import flatMap from "array.prototype.flatmap" // Necessary for Node 10 support (ES2018).
+import flatMap from "array.prototype.flatmap"; // Necessary for Node 10 support (ES2018).
 
 import {
     Action,
