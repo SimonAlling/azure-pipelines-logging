@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 10.x # Azure Pipelines tasks run on Node 10 at the time of writing.
+          - 10.x # Azure Pipelines tasks run on Node 10 at the time of writing. 👉 https://github.com/microsoft/azure-pipelines-agent/issues/3195#issuecomment-749438520
           - 12.x
           - 14.x
     steps:
