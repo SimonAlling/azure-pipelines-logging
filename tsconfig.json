@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "declaration": true,
+        "esModuleInterop": true,
         "lib": [
             "es2018", // Azure Pipelines tasks run on Node 10 at the time of writing. 👉 https://node.green/#ES2018 👉 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping#node-10 👉 https://stackoverflow.com/a/57607634/2135002
         ],
