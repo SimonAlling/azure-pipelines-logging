@@ -45,7 +45,7 @@ describe(format, () => {
         expect(format("debug")()).toEqual("##[debug]");
     });
     it("endgroup", () => {
-        const actual = format("endgroup")();
+        const actual = format("endgroup");
         const expected = `##[endgroup]`;
         expect(actual).toEqual(expected);
     });
@@ -70,6 +70,12 @@ describe(format, () => {
         const expected = `##[warning]Warning message\n##[warning]Next line\n##[warning]Multiple\n##[warning]Lines`;
         expect(actual).toEqual(expected);
         expect(format("warning")()).toEqual("##[warning]");
+    });
+    it("partial application", () => {
+        const lines = ["Warning message", "Next line", "Multiple\nLines"]
+        const actual = format("warning")(...lines);
+        const expected = format("warning", ...lines);
+        expect(actual).toEqual(expected);
     });
 });
 

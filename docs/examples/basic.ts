@@ -1,7 +1,7 @@
 import { command, format, log } from "azure-pipelines-logging";
 
 log(command("task", "logissue", { type: "error" })("Error summary"));
-log(format("error")(
+log(format("error",
     "Details about error.",
     "Second line of details.",
     "Third and\nfourth line.",

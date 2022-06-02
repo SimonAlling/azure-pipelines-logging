@@ -39,16 +39,23 @@ export function command<
 
 /**
  * Constructs a formatting log command representing an error, warning, collapsible section etc.
+ *
+ * Can be partially applied – these are equivalent:
+ *
+ *     log(format("error", "Ouch!"))
+ *     log(format("error")("Ouch!"))
  */
-export function format(format: FormatWithoutMessage): () => string;
-export function format(format: FormatWithMessage): (...message: readonly string[]) => string;
-export function format(format: Format): (...message: readonly string[]) => string {
-    return (...message) => (
+export function format(format: FormatWithoutMessage): string;
+export function format(format: FormatWithMessage): (...message: readonly string[]) => string; // Only one argument passed ⇒ return a function.
+export function format(format: FormatWithMessage, ...message: readonly string[]): string; // More than one argument passed ⇒ return a string.
+export function format(format: Format, ...message: readonly string[]): string | ((...message: readonly string[]) => string) {
+    const serialize = (...message: readonly string[]) => (
         // Arguments are conceptually treated as lines, but since they themselves can contain line breaks, we first split each argument into lines.
         (message.length === 0 ? [""] : flatMap(message, arg => arg.split("\n")))
         .map(line => `##[${format}]${line}`)
         .join("\n")
     );
+    return message.length > 0 ? serialize(...message) : serialize;
 }
 
 /**
